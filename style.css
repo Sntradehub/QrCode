@@ -12,7 +12,29 @@ body {
     align-items: center;
     height: 100vh;
     background-image: url(./images/747.jpg);
+    position: relative; /* added for overlay stacking */
+    z-index: 0;
 }
+
+/* overlay on top of the background image */
+body::before{
+    content: "";
+    position: fixed;
+    inset: 0; /* top:0; right:0; bottom:0; left:0; */
+    background:
+      linear-gradient(180deg, rgba(4,10,20,0.55), rgba(8,20,30,0.45)),
+      radial-gradient(60% 40% at 10% 10%, rgba(0,0,0,0.18), transparent 30%),
+      rgba(0,0,0,0.20); /* adjust opacity/colors as needed */
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ensure the UI sits above the overlay */
+.container {
+    position: relative;
+    z-index: 1;
+}
+
 
 .container {
     background: #b5b4b497;
